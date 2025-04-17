@@ -11,7 +11,7 @@ pipeline {
         stage('Install Dependencies'){
             steps{
                 bat '''
-                    C:\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m venv venv
+                    C:\\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m venv venv
                     call venv\\Scripts\\activate
                     python -m pip install --upgrade pip
                     pip install pytest
