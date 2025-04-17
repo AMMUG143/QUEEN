@@ -11,6 +11,7 @@ pipeline {
         stage('Install Dependencies'){
             steps{
                 bat '''
+                    C:\Users\amrutha\AppData\Local\Programs\Python\Python313\python.exe
                     call venv\\Scripts\\activate
                     python -m pip install --upgrade pip
                     pip install pytest
@@ -22,7 +23,7 @@ pipeline {
             steps{
                 bat '''
                     call venv\\Scripts\\activate
-                    pytest hlo.py
+                    pytest test.py
                 '''
             }
         }
@@ -33,10 +34,12 @@ pipeline {
                 echo 'Deploying to Application...'
                 bat '''
                     call venv\\Scripts\\activate
-                    python test.py
+                    C:\Users\amrutha\AppData\Local\Programs\Python\Python313\python.exe
                 '''
             }
         }
     }
 }
-             
+
+
+        
