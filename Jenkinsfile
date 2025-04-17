@@ -1,13 +1,18 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Run Python Script Manually') {
-            steps {
-                bat 'C:\\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe myscript.py'
+    stages{
+        stage('Run python script'){
+            steps{
+                script {
+                    bat 'C:\\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe '
+                }
             }
         }
+    }
 
+
+    stage {
         stage('Checkout Code') {
             steps {
                 git url: 'https://github.com/AMMUG143/WORLD.git', branch: 'main'
