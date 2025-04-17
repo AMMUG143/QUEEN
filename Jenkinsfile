@@ -1,17 +1,25 @@
 pipeline {
     agent any
 
-    stages{
-        stage('Checkout Code'){
-            steps{
-                git url :'https://github.com/AMMUG143/WORLD.git' , branch: 'main'
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/AMMUG143/WORLD.git', branch: 'main'
             }
         }
-    
-        stage('Install Dependencies'){
-            steps{
+
+        stage('Set Up Virtual Environment') {
+            steps {
                 bat '''
-                    C:\\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m venv venv
+                    echo Creating virtual environment...
+                    python -m venv venv
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat '''
                     call venv\\Scripts\\activate
                     python -m pip install --upgrade pip
                     pip install pytest
@@ -19,25 +27,26 @@ pipeline {
             }
         }
 
-        stage('Run Tests'){
-            steps{
+        stage('Run Tests') {
+            steps {
                 bat '''
                     call venv\\Scripts\\activate
-                    pytest test.py
+                    echo Running tests...
+                    pytest hlo.py
                 '''
             }
         }
 
-
-        stage('deploy'){
-            steps{
-                echo 'Deploying to Application...'
+        stage('Deploy') {
+            steps {
                 bat '''
                     call venv\\Scripts\\activate
-                    C:\\Users\\amrutha\\AppData\\Local\\Programs\\Python\\Python313\\python.exe  hlo.py
+                    echo Deploying app...
+                    python test.py
                 '''
             }
         }
     }
 }
-        
+
+      
